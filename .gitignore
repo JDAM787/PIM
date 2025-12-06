@@ -1,6 +1,7 @@
 .nx/installation
 .nx/cache
 .nx/workspace-data
+node_modules/
 
 
 .cursor/rules/nx-rules.mdc
