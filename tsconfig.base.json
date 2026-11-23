@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@pim/dtos": ["libs/dtos/src/index.ts"]
+    },
     "noImplicitAny": true,
     "noImplicitReturns": true
   },

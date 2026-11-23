@@ -1,5 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
 
+import { ApiStatus } from '@/components/api-status';
 import { Button } from '@/components/ui/button';
 
 export function App() {
@@ -15,6 +16,7 @@ export function App() {
             <p className="text-muted-foreground">
               Componentes con tokens de diseño y modo claro/oscuro habilitados.
             </p>
+            <ApiStatus />
           </div>
           <div className="flex gap-3">
             <Button asChild variant="outline">

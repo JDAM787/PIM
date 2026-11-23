@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -8,14 +9,20 @@ describe('AppController', () => {
   beforeAll(async () => {
     app = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [
+        AppService,
+        { provide: DataSource, useValue: { query: jest.fn().mockResolvedValue([]) } },
+      ],
     }).compile();
   });
 
   describe('getData', () => {
-    it('should return "Hello API"', () => {
+    it('should return "Hello API"', async () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual({ message: 'Hello API' });
+      await expect(appController.getData()).resolves.toMatchObject({
+        message: 'Hello API',
+        database: 'up',
+      });
     });
   });
 });

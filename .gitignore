@@ -7,4 +7,13 @@ node_modules/
 .cursor/rules/nx-rules.mdc
 .github/instructions/nx.instructions.md
 vite.config.*.timestamp*
-vitest.config.*.timestamp*node_modules
+vitest.config.*.timestamp*
+
+# build output
+dist/
+coverage/
+
+# env files
+.env
+.env.*
+!.env.example

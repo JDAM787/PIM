@@ -13,14 +13,14 @@ describe('App', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have a greeting as the title', () => {
-    const { getAllByText } = render(
+  it('should render the main heading', () => {
+    const { getByRole } = render(
       <BrowserRouter>
         <App />
       </BrowserRouter>
     );
-    expect(
-      getAllByText(new RegExp('Welcome client', 'gi')).length > 0
-    ).toBeTruthy();
+    expect(getByRole('heading', { level: 1 }).textContent).toContain(
+      'Tailwind + shadcn/ui'
+    );
   });
 });
