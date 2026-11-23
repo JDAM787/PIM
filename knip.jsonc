@@ -1,0 +1,44 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  // Monorepo Nx sin npm workspaces: un solo workspace raíz con entradas explícitas.
+  "entry": ["apps/server/webpack.config.js", "apps/server/src/main.ts"],
+  "project": [
+    "apps/**/*.{ts,tsx,js,mjs,cjs,mts,cts,css}",
+    "libs/**/*.{ts,tsx}"
+  ],
+  "paths": {
+    "@/*": ["apps/client/src/*"],
+    "@pim/dtos": ["libs/dtos/src/index.ts"]
+  },
+  "eslint": {
+    "config": ["eslint.config.mjs", "{apps,libs}/*/eslint.config.mjs"]
+  },
+  "vite": { "config": ["apps/client/vite.config.mts"] },
+  "vitest": { "config": ["apps/client/vite.config.mts"] },
+  "jest": { "config": ["jest.config.ts", "apps/*/jest.config.cts"] },
+  "playwright": { "config": ["apps/client-e2e/playwright.config.ts"] },
+  "tailwind": { "config": ["apps/client/tailwind.config.js"] },
+  "postcss": { "config": ["apps/client/postcss.config.js"] },
+  // El plugin de webpack no puede ejecutar la config de Nx; se analiza como entry estático.
+  "webpack": false,
+  // Primitivas de shadcn/ui: se vendorizan completas, no todas sus partes se usan siempre.
+  "ignoreIssues": {
+    "apps/client/src/components/ui/**": ["exports", "types"]
+  },
+  "ignoreDependencies": [
+    // Peer deps de @nx/eslint-plugin (flat/typescript, flat/react).
+    "@eslint/js",
+    "typescript-eslint",
+    "eslint-plugin-import",
+    "eslint-plugin-jsx-a11y",
+    "eslint-plugin-react",
+    "eslint-plugin-react-hooks",
+    // Generadores de Nx (`nx g`) y transpilación de configs TS.
+    "@nestjs/schematics",
+    "@nx/nest",
+    "@nx/web",
+    "@swc/cli",
+    // CLI de formato (`nx format`, `npx prettier`).
+    "prettier"
+  ]
+}

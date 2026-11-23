@@ -6,7 +6,9 @@ export default [
   ...nx.configs['flat/react'],
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    // Override or add rules here
-    rules: {},
+    rules: {
+      // flat/react lo reactiva; la base ya usa unused-imports/no-unused-vars.
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
   },
 ];

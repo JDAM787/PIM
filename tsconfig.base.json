@@ -17,8 +17,11 @@
     "paths": {
       "@pim/dtos": ["libs/dtos/src/index.ts"]
     },
-    "noImplicitAny": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true
   },
   "exclude": ["node_modules", "tmp"]
 }

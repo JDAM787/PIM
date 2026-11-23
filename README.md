@@ -35,7 +35,15 @@ En desarrollo el client llama a `/api` y Vite lo redirige al server, así que no
 | `npm run build` | Compila todo a `dist/` |
 | `npm run test` | Corre los tests de todos los proyectos |
 | `npm run lint` / `npm run typecheck` | Lint y chequeo de tipos |
+| `npm run knip` | Busca archivos, exports y dependencias sin usar |
+| `npm run check` | Lint + typecheck + knip (correr antes de cerrar un ticket) |
 | `npm run db:up` / `npm run db:down` | Arranca o para el Postgres local |
+
+## Calidad de código
+
+- **TypeScript estricto** en todo el repo (`tsconfig.base.json`): `strict`, `noUnusedLocals`, `noUnusedParameters` y `noUncheckedIndexedAccess`.
+- **ESLint** (`eslint.config.mjs`): `complexity` máximo 10, `max-depth` máximo 2 y `eslint-plugin-unused-imports` (`npx nx run-many -t lint --fix` borra los imports sin usar).
+- **Knip** (`knip.jsonc`): detecta código muerto que ESLint no ve. Las excepciones justificadas van en `ignoreDependencies` o `ignoreIssues`, con un comentario.
 
 ## Tipos compartidos
 
