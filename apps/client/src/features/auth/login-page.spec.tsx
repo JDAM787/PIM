@@ -8,7 +8,7 @@ function renderLogin() {
     <MemoryRouter initialEntries={['/login']}>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/" element={<p>Inicio</p>} />
+        <Route path="/products" element={<p>Productos</p>} />
       </Routes>
     </MemoryRouter>
   );
@@ -43,7 +43,7 @@ describe('LoginPage', () => {
     expect(password.getAttribute('type')).toBe('text');
   });
 
-  it('navega al inicio con datos válidos', () => {
+  it('navega a productos con datos válidos', () => {
     renderLogin();
     fireEvent.change(screen.getByLabelText('Correo electrónico'), {
       target: { value: 'juan@pim.dev' },
@@ -52,6 +52,6 @@ describe('LoginPage', () => {
       target: { value: 'secreta' },
     });
     submit();
-    expect(screen.getByText('Inicio')).toBeTruthy();
+    expect(screen.getByText('Productos')).toBeTruthy();
   });
 });

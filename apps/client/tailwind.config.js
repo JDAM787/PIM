@@ -52,6 +52,11 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        success: {
+          DEFAULT: 'hsl(var(--success))',
+          foreground: 'hsl(var(--success-foreground))',
+        },
+        shell: 'hsl(var(--shell))',
       },
       backgroundImage: {
         // Blanco arriba que se funde en un degradado horizontal azul → violeta.

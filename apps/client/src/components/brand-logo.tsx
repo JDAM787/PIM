@@ -2,10 +2,12 @@ import { cn } from '@/lib/utils';
 
 interface BrandLogoProps {
   className?: string;
+  /** `false` muestra solo el monograma (riel lateral). */
+  showName?: boolean;
 }
 
 /** Logo provisional de PIM: monograma + nombre, coloreado con los tokens del tema. */
-export function BrandLogo({ className }: BrandLogoProps) {
+export function BrandLogo({ className, showName = true }: BrandLogoProps) {
   return (
     <div className={cn('flex items-center gap-2', className)}>
       <span
@@ -14,7 +16,14 @@ export function BrandLogo({ className }: BrandLogoProps) {
       >
         P
       </span>
-      <span className="text-lg font-semibold tracking-tight">PIM</span>
+      <span
+        className={cn(
+          'text-lg font-semibold tracking-tight',
+          !showName && 'sr-only'
+        )}
+      >
+        PIM
+      </span>
     </div>
   );
 }

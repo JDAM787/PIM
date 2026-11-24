@@ -44,7 +44,7 @@ export function LoginPage() {
         <CardContent className="flex flex-col gap-4">
           <SocialLoginButtons />
           <OrDivider />
-          <LoginForm onSuccess={() => navigate('/')} />
+          <LoginForm onSuccess={() => navigate('/products')} />
         </CardContent>
 
         <CardFooter className="flex-wrap gap-x-1 text-sm">

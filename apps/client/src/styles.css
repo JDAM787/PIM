@@ -39,6 +39,13 @@
     /* Fondo de las pantallas de autenticación (degradado suave). */
     --auth-gradient-from: 205 92% 86%;
     --auth-gradient-to: 262 92% 88%;
+
+    /* Estados positivos (p. ej. badge "Completado"). */
+    --success: 152 60% 52%;
+    --success-foreground: 152 60% 14%;
+
+    /* Fondo de la app autenticada, detrás de las tarjetas y paneles. */
+    --shell: 240 20% 97%;
   }
 
   .dark {
@@ -72,6 +79,11 @@
 
     --auth-gradient-from: 215 60% 18%;
     --auth-gradient-to: 262 50% 22%;
+
+    --success: 152 50% 40%;
+    --success-foreground: 152 60% 96%;
+
+    --shell: 240 8% 7%;
   }
 
   * {
