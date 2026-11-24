@@ -52,8 +52,19 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+        success: {
+          DEFAULT: 'hsl(var(--success))',
+          foreground: 'hsl(var(--success-foreground))',
+        },
+        shell: 'hsl(var(--shell))',
+      },
+      backgroundImage: {
+        // Blanco arriba que se funde en un degradado horizontal azul → violeta.
+        'auth-gradient':
+          'linear-gradient(to bottom, hsl(var(--background)) 20%, hsl(var(--background) / 0) 75%), linear-gradient(to right, hsl(var(--auth-gradient-from)), hsl(var(--auth-gradient-to)))',
       },
       borderRadius: {
+        pill: 'var(--radius-pill)',
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
