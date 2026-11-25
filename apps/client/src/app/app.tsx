@@ -9,6 +9,12 @@ const LoginPage = lazy(() =>
   }))
 );
 
+const SignupPage = lazy(() =>
+  import('@/features/auth/signup-page').then((module) => ({
+    default: module.SignupPage,
+  }))
+);
+
 const AppShell = lazy(() =>
   import('@/components/layout/app-shell').then((module) => ({
     default: module.AppShell,
@@ -26,6 +32,7 @@ export function App() {
     <Suspense fallback={null}>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route element={<AppShell />}>
           <Route path="/products" element={<ProductsPage />} />
         </Route>

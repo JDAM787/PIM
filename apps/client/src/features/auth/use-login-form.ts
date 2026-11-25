@@ -5,11 +5,7 @@ import {
   type LoginValues,
   validateLogin,
 } from './login-validation';
-
-function readText(data: FormData, name: string): string {
-  const value = data.get(name);
-  return typeof value === 'string' ? value : '';
-}
+import { readFormText } from './read-form-text';
 
 /** Estado y envío del formulario de login. Solo llama a `onSuccess` si los datos son válidos. */
 export function useLoginForm(onSuccess: (values: LoginValues) => void) {
@@ -19,8 +15,8 @@ export function useLoginForm(onSuccess: (values: LoginValues) => void) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const values: LoginValues = {
-      email: readText(data, 'email').trim(),
-      password: readText(data, 'password'),
+      email: readFormText(data, 'email').trim(),
+      password: readFormText(data, 'password'),
     };
     const nextErrors = validateLogin(values);
     setErrors(nextErrors);
