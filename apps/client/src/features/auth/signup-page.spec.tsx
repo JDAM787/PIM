@@ -1,7 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import { SignupPage } from './signup-page';
+
+vi.mock('./auth-service', () => ({
+  signUpWithEmail: vi.fn().mockResolvedValue({ needsEmailConfirmation: false }),
+  signInWithGoogle: vi.fn().mockResolvedValue(undefined),
+}));
 
 function renderSignup() {
   return render(
@@ -34,13 +39,15 @@ describe('SignupPage', () => {
     );
   });
 
-  it('entra directo a la app sin empresa y con un correo personal', () => {
+  it('entra directo a la app sin empresa y con un correo personal', async () => {
     renderSignup();
     fill('Nombre', 'Ana Pérez');
     fill('Correo electrónico', 'ana@gmail.com');
     fill('Contraseña', 'secreta123');
     submit();
-    expect(screen.getByText('Productos')).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.getByText('Productos')).toBeTruthy();
+    });
   });
 
   it('enlaza de vuelta al login', () => {

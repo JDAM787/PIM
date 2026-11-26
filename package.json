@@ -90,6 +90,7 @@
     "@radix-ui/react-select": "^2.4.1",
     "@radix-ui/react-separator": "^1.2.0",
     "@radix-ui/react-slot": "^1.2.4",
+    "@supabase/supabase-js": "^2.119.2",
     "axios": "^1.6.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.15.1",

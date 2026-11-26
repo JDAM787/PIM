@@ -10,11 +10,17 @@ import { PasswordInput } from './password-input';
 
 interface SignupFormProps {
   onSuccess: (values: SignupRequestDto) => void;
+  serverError?: string | null;
+  isSubmitting?: boolean;
 }
 
 const PASSWORD_HINT_ID = 'signup-password-hint';
 
-export function SignupForm({ onSuccess }: SignupFormProps) {
+export function SignupForm({
+  onSuccess,
+  serverError,
+  isSubmitting = false,
+}: SignupFormProps) {
   const { errors, handleSubmit } = useSignupForm(onSuccess);
 
   return (
@@ -88,8 +94,18 @@ export function SignupForm({ onSuccess }: SignupFormProps) {
         />
       </FormField>
 
-      <Button type="submit" className="h-11 w-full rounded-pill">
-        Crear cuenta
+      {serverError && (
+        <p role="alert" className="text-sm text-destructive">
+          {serverError}
+        </p>
+      )}
+
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="h-11 w-full rounded-pill"
+      >
+        {isSubmitting ? 'Creando cuenta...' : 'Crear cuenta'}
       </Button>
     </form>
   );

@@ -1,7 +1,12 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import { LoginPage } from './login-page';
+
+vi.mock('./auth-service', () => ({
+  signInWithEmail: vi.fn().mockResolvedValue(undefined),
+  signInWithGoogle: vi.fn().mockResolvedValue(undefined),
+}));
 
 function renderLogin() {
   return render(
@@ -43,7 +48,7 @@ describe('LoginPage', () => {
     expect(password.getAttribute('type')).toBe('text');
   });
 
-  it('navega a productos con datos válidos', () => {
+  it('navega a productos con datos válidos', async () => {
     renderLogin();
     fireEvent.change(screen.getByLabelText('Correo electrónico'), {
       target: { value: 'juan@pim.dev' },
@@ -52,6 +57,8 @@ describe('LoginPage', () => {
       target: { value: 'secreta' },
     });
     submit();
-    expect(screen.getByText('Productos')).toBeTruthy();
+    await waitFor(() => {
+      expect(screen.getByText('Productos')).toBeTruthy();
+    });
   });
 });

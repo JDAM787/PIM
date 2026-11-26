@@ -12,9 +12,15 @@ import { PasswordInput } from './password-input';
 
 interface LoginFormProps {
   onSuccess: (values: LoginValues) => void;
+  serverError?: string | null;
+  isSubmitting?: boolean;
 }
 
-export function LoginForm({ onSuccess }: LoginFormProps) {
+export function LoginForm({
+  onSuccess,
+  serverError,
+  isSubmitting = false,
+}: LoginFormProps) {
   const { errors, handleSubmit } = useLoginForm(onSuccess);
 
   return (
@@ -64,8 +70,18 @@ export function LoginForm({ onSuccess }: LoginFormProps) {
         Recordarme
       </Label>
 
-      <Button type="submit" className="h-11 w-full rounded-pill">
-        Iniciar sesión
+      {serverError && (
+        <p role="alert" className="text-sm text-destructive">
+          {serverError}
+        </p>
+      )}
+
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="h-11 w-full rounded-pill"
+      >
+        {isSubmitting ? 'Iniciando sesión...' : 'Iniciar sesión'}
       </Button>
     </form>
   );
